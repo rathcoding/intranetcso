@@ -21,7 +21,8 @@ public class Psi implements Serializable {
 	public Psi(String cpf, String senha, String lotacao, Integer acesso) {
 		super();
 		this.cpf = cpf;
-		this.setSenha(senha);
+//		this.setSenha(senha);
+		this.senha = senha;
 		this.lotacao = lotacao;
 		this.acesso = acesso;
 	}

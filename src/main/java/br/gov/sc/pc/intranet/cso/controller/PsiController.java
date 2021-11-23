@@ -12,22 +12,21 @@ import br.gov.sc.pc.intranet.cso.entities.Psi;
 import br.gov.sc.pc.intranet.cso.util.Criptografia;
 import br.gov.sc.pc.intranet.dao.PsiDAO;
 
-@WebServlet("/psi")
+@WebServlet("/usuario")
 public class PsiController extends HttpServlet {
 	
-	private static final long serialVersionUID = -1899660119224193680L;
+
+	private static final long serialVersionUID = 8280435299921719269L;
+
 
 	public PsiController() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String acao = request.getParameter("acao");
+		System.out.println("PsiController.acao: " + acao); // DEBUGGER
 		
         switch (acao) {
 	        case "criar":
@@ -37,8 +36,8 @@ public class PsiController extends HttpServlet {
 				login(request, response);
 				break;
 	        case "logout":
-	             logout(request, response);
-	             break;
+	            logout(request, response);
+	            break;
 	        default:
 	        	request.getRequestDispatcher("login.jsp").forward(request, response);
         }
@@ -66,9 +65,11 @@ public class PsiController extends HttpServlet {
 		
 		String cpf = request.getParameter("cpf");
 		String senha = request.getParameter("senha");
+		System.out.println("cpf=" + cpf + " senha=" + senha); // DEBUGGER
 		
 		PsiDAO psiDAO = new PsiDAO();
 		Psi psi = psiDAO.getOneByCPF(cpf);
+		System.out.println(psi.toString()); // DEBUGGER
 		
 		String senha_cripto = "";
 		try {
@@ -77,14 +78,16 @@ public class PsiController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		System.out.println("psi.getSenha()=" + psi.getSenha() + " senha_cripto=" + senha_cripto); // DEBUGGER
 		if (psi == null || !psi.getSenha().equals(senha_cripto)) {
 			request.setAttribute("erro", "CPF e/ou senha inválido.");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		} else {
 			HttpSession session = request.getSession();
-			session.setAttribute("user", cpf);
+			session.setAttribute("user", psi.getCPF());
 			System.out.println("Login: " + session.getAttribute("user"));
-			request.getRequestDispatcher("home").forward(request, response);	
+			request.getRequestDispatcher("caso?acao=getAllByPsi").forward(request, response);	
+//			request.getRequestDispatcher("home.jsp").forward(request, response);	
 		}
 				
 	}

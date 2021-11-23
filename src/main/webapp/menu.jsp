@@ -7,12 +7,6 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		  	<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
-					<form class="form-inline m-1" action="refeicao" method="post" accept-charset="ISO-8859-1">
-						<input type="hidden" name="acao" value="getAll">
-						<button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Esqueceu a senha?</button>
-					</form>
-				</li>
-				<li class="nav-item">
 					<form class="form-inline m-1" action="usuario" method="post" accept-charset="ISO-8859-1">
 						<input type="hidden" name="acao" value="logout">
 						<button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sair</button>

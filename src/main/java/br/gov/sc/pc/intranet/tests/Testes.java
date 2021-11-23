@@ -38,8 +38,8 @@ public class Testes {
 //		cadastrarIntervencao();
 		getIntervencaoById();
 		getAllIntervencoesByCaso();
-		updateOneIntervencao();
-		deleteOneIntervencao();
+//		updateOneIntervencao();
+//		deleteOneIntervencao();
 
 
 	}
@@ -147,7 +147,7 @@ public class Testes {
 	private static void getCasoById() {
 		
 		CasoDAO casoDAO = new CasoDAO();
-		Caso caso = casoDAO.getOneById(2);
+		Caso caso = casoDAO.getOneById(1);
 		System.out.println(caso.toString());
 		return;
 		
@@ -195,7 +195,7 @@ public class Testes {
 	    Time hora = Time.valueOf("00:56:00");
 	    String notas = "O primeiro atendimento foi individual....... blablabla";
 	    String psi = "02925522971";
-		Integer caso = 2;
+		Integer caso = 1;
 		Intervencao int1 = new Intervencao(tipo, data, hora, notas, psi, caso);
 	    intervencaoDAO.cadastrar(int1);
 	    
@@ -204,7 +204,7 @@ public class Testes {
 	    hora = Time.valueOf("03:30:00");
 	    notas = "Considerado APTO para o porte.";
 	    psi = "02925522971";
-		caso = 2;
+		caso = 1;
 		Intervencao int2 = new Intervencao(tipo, data, hora, notas, psi, caso);
 	    intervencaoDAO.cadastrar(int2);
 	    
@@ -213,7 +213,7 @@ public class Testes {
 	    hora = Time.valueOf("00:22:00");
 	    notas = "Contato via Whastapp. Tratamento indo bem... blablabla";
 	    psi = "02925522971";
-		caso = 2;
+		caso = 1;
 		Intervencao int3 = new Intervencao(tipo, data, hora, notas, psi, caso);
 	    intervencaoDAO.cadastrar(int3);
 	    
@@ -223,7 +223,7 @@ public class Testes {
 	
 	private static void getIntervencaoById() {
 		IntervencaoDAO intervencaoDAO = new IntervencaoDAO();
-		Intervencao intervencao = intervencaoDAO.getOneById(2);
+		Intervencao intervencao = intervencaoDAO.getOneById(1);
 		System.out.println(intervencao.toString());
 		
 	}
@@ -231,7 +231,7 @@ public class Testes {
 	private static void getAllIntervencoesByCaso() {
 		
 		IntervencaoDAO intervencaoDAO = new IntervencaoDAO();
-		List<Intervencao> list = intervencaoDAO.getAllByCaso(2); 
+		List<Intervencao> list = intervencaoDAO.getAllByCaso(1); 
 		
 		for (Intervencao intervencao : list) {
 			System.out.println(intervencao.toString());
