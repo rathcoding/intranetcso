@@ -1,0 +1,42 @@
+-- Cadastro de tipos de intervenção:
+insert into t_cso_tipo_intervencao values ("Atendimento individual");
+insert into t_cso_tipo_intervencao values ("Avaliação para Porte de Arma de Fogo");
+insert into t_cso_tipo_intervencao values ("Contato com chefia");
+insert into t_cso_tipo_intervencao values ("Contato eletrônico");
+insert into t_cso_tipo_intervencao values ("Elaboração de documento");
+insert into t_cso_tipo_intervencao values ("Planejamento de intervenção");
+insert into t_cso_tipo_intervencao values ("Correção de testes");
+
+-- Cadastro de códigos CID:
+insert into t_cso_cid values ("F00 - Demência na Doença de Alzheimer");
+insert into t_cso_cid values ("F01 - Demência Vascular");
+insert into t_cso_cid values ("F02 - Demência em Outras Doenças Classificadas em Outra Parte");
+insert into t_cso_cid values ("F03 - Demência Não Especificada");
+insert into t_cso_cid values ("F04 - Síndrome Amnésica Orgânica Não Induzida Pelo Álcool ou Por Outras Substâncias Psicoativas");
+insert into t_cso_cid values ("F05 - Delirium Não Induzido Pelo Álcool ou Por Outras Substâncias Psicoativas");
+insert into t_cso_cid values ("F06 - Outros Transtornos Mentais Devidos a Lesão e Disfunção Cerebral e a Doença Física");
+insert into t_cso_cid values ("F07 - Transtornos de Personalidade e do Comportamento Devidos a Doença, a Lesão e a Disfunção Cerebral");
+insert into t_cso_cid values ("F09 - Transtorno Mental Orgânico ou Sintomático Não Especificado");
+insert into t_cso_cid values ("F10 - Transtornos Mentais e Comportamentais Devidos ao Uso de Álcool");
+insert into t_cso_cid values ("F11 - Transtornos Mentais e Comportamentais Devidos ao Uso de Opiáceos");
+insert into t_cso_cid values ("F12 - Transtornos Mentais e Comportamentais Devidos ao Uso de Canabinóides");
+insert into t_cso_cid values ("F13 - Transtornos Mentais e Comportamentais Devidos ao Uso de Sedativos e Hipnóticos");
+insert into t_cso_cid values ("F14 - Transtornos Mentais e Comportamentais Devidos ao Uso da Cocaína");
+insert into t_cso_cid values ("F15 - Transtornos Mentais e Comportamentais Devidos ao Uso de Outros Estimulantes, Inclusive a Cafeína");
+insert into t_cso_cid values ("F16 - Transtornos Mentais e Comportamentais Devidos ao Uso de Alucinógenos");
+insert into t_cso_cid values ("F17 - Transtornos Mentais e Comportamentais Devidos ao Uso de Fumo");
+insert into t_cso_cid values ("F18 - Transtornos Mentais e Comportamentais Devidos ao Uso de Solventes Voláteis");
+insert into t_cso_cid values ("F19 - Transtornos Mentais e Comportamentais Devidos ao Uso de Múltiplas Drogas e ao Uso de Outras Substâncias Psicoativas");
+insert into t_cso_cid values ("F20 - Esquizofrenia");
+insert into t_cso_cid values ("F21 - Transtorno Esquizotípico");
+insert into t_cso_cid values ("F22 - Transtornos Delirantes Persistentes");
+insert into t_cso_cid values ("F23 - Transtornos Psicóticos Agudos e Transitórios");
+insert into t_cso_cid values ("F24 - Transtorno Delirante Induzido");
+insert into t_cso_cid values ("F25 - Transtornos Esquizoafetivos");
+insert into t_cso_cid values ("F28 - Outros Transtornos Psicóticos Não-orgânicos");
+insert into t_cso_cid values ("F29 - Psicose Não-orgânica Não Especificada");
+insert into t_cso_cid values ("F30 - Episódio Maníaco");
+insert into t_cso_cid values ("F31 - Transtorno Afetivo Bipolar");
+insert into t_cso_cid values ("F32 - Episódios Depressivos");
+insert into t_cso_cid values ("F33 - Transtorno Depressivo Recorrente");
+insert into t_cso_cid values ("F34 - Transtornos de Humor (afetivos) Persistentes");

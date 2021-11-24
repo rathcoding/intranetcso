@@ -17,7 +17,7 @@
 		
 		<div class="container-fluid"><p class="h2">Caso</p></div>
 		
-		<table class="table">
+		<table class="table table-hover">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Tipo</th>
@@ -48,11 +48,11 @@
 	
 	<!--=== SERVIDOR =====================================================================================-->
 	
-	<div class="container-fluid">
+	<div class="container-fluid bg-light">
 		
 		<div class="container-fluid"><p class="h2">Servidor</p></div>
 		
-		<table class="table">
+		<table class="table table-hover">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Ação</th>
@@ -70,7 +70,7 @@
 							<div>
 								<input type="hidden" name="id" value="${caso.servidorCPF}">
 								<input type="hidden" name="acao" value="getOneById">
-								<input class="btn btn-secondary mx-1" type="submit" value="Ver">
+								<input class="btn btn-secondary btn-sm" type="submit" value="Ver">
 							</div>
 						</form>
 					</div></td>
@@ -91,7 +91,7 @@
 	<div class="container-fluid">
 		<div class="container-fluid"><p class="h2">Intervenções</p></div>
 	
-		<table class="table">
+		<table class="table table-hover">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Ações</th>
@@ -108,7 +108,7 @@
 								<div>
 									<input type="hidden" name="id" value="${i.id}">
 									<input type="hidden" name="acao" value="getOneById">
-									<input class="btn btn-secondary mx-1" type="submit" value="Edit">
+									<input class="btn btn-secondary btn-sm" type="submit" value="Edit">
 								</div>
 							</form>
 						</div></td>
@@ -120,6 +120,42 @@
 				</c:forEach>
 			</tbody>
 		</table>		
+	</div>
+	
+	<!--=== FORM INCLUIR INTERNÇÃO =======================================================================-->
+	
+	<div class="container-fluid bg-light">
+		<div class="container-fluid"><p class="h2">Cadastrar nova intervenção</p></div>
+		<div class="d-flex justify-content-start mb-3">
+			<form method="post" action="intervencao" accept-charset="ISO-8859-1">
+				<fieldset>
+					<div class="form-group">
+						<label for="id-data" class="col-form-label">Data</label>
+						<input type="date" name="data" id="id-data" pattern="dd/mm/yyyy" required>
+					</div>
+					<div class="form-group">
+						<label for="id-hora" class="col-form-label">Hora</label>
+						<input type="time" name="hora" id="id-hora" pattern="HH:MM" required>
+					</div>
+					<div class="form-group">
+						<label for="id-tipo" class="col-form-label">Tipo</label>
+	 					<select class="browser-default custom-select" id="id_tipo" name="tipo">
+							<c:forEach items="${tipos_intervencao}" var="tpi">
+								<option value="${tpi}">${tpi}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="id-notas" class="col-form-label">Anotações:</label>
+						<textarea class="form-control" name="notas" id="id-notas"></textarea>
+					</div>
+					<div class="form-group">
+						<input type="hidden" name="acao" value="cadastrar">
+						<input class="btn btn-secondary mt-2" type="submit" value="Cadastrar">
+					</div>
+				</fieldset>
+			</form>
+		</div>
 	</div>
 	
 	<%@ include file="footer.jsp" %>

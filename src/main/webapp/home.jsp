@@ -13,7 +13,7 @@
 	<div class="container-fluid"><p class="h2">Meus Casos</p></div>
 	
 	<div class="container-fluid">
-		<table class="table">
+		<table class="table table-hover">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Ação</th>
@@ -26,15 +26,15 @@
 			<tbody>
 				<c:forEach items="${casos}" var="c">
 					<tr>
-						<td><div class="d-flex justify-content-start">
+						<td>
 							<form method="post" action="caso" accept-charset="ISO-8859-1">
 								<div>
 									<input type="hidden" name="id" value="${c.id}">
 									<input type="hidden" name="acao" value="getOneById">
-									<input class="btn btn-secondary mx-1" type="submit" value="Ver">
+									<input class="btn btn-secondary btn-sm" type="submit" value="Ver">
 								</div>
 							</form>
-						</div></td>
+						</td>
 						<td>${c.servidor.nome}</td> <!-- INCLUIR LINK PARA PAGINA DO SERVIDOR -->
 						<td>${c.tipo}</td>
 						<td><fmt:formatDate pattern="dd/MM/yyyy" value="${c.data_inicio}"/></td>
@@ -45,6 +45,8 @@
 			</tbody>
 		</table>		
 	</div>
+	
+	
 	
 	<%@ include file="footer.jsp" %>
 	

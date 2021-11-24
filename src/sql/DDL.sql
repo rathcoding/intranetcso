@@ -56,15 +56,16 @@ create table t_cso_intervencao (
 alter table t_cso_intervencao add constraint fk_intervencao_psi foreign key (psi) references t_cso_psi(cpf);
 alter table t_cso_intervencao add constraint fk_intervencao_caso foreign key (caso) references t_cso_caso(id);
 
-/* NÃO SERÁ IMPLEMENTADA TABELA PADRONIZADA CID NO PROTÓTIPO DO SISTEMA.
 
-alter table t_cso_intervencao add constraint fk_intervencao_caso foreign key (caso) references t_cso_caso(id);
+create table t_cso_tipo_intervencao (
+	tipo 			varchar(255) primary key
+);
 
 create table t_cso_cid (
-	cid				varchar(7) primary key, -- ZZ9Z.ZZ
-	cid10			varchar(6),
-    descricao		varchar(255)
+	cid				varchar(255) primary key
 );
+
+/* NÃO SERÁ IMPLEMENTADO MULTIPLOS CIDs POR CASO NO PROTÓTIPO DO SISTEMA.
 
 create table t_cso_caso_cid (
 	id 				int auto_increment primary key,

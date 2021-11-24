@@ -16,6 +16,7 @@ import br.gov.sc.pc.intranet.cso.entities.Servidor;
 import br.gov.sc.pc.intranet.dao.CasoDAO;
 import br.gov.sc.pc.intranet.dao.IntervencaoDAO;
 import br.gov.sc.pc.intranet.dao.ServidorDAO;
+import br.gov.sc.pc.intranet.dao.TipoIntervencaoDAO;
 
 
 @WebServlet("/caso")
@@ -86,6 +87,11 @@ public class CasoController extends HttpServlet {
 		IntervencaoDAO intervencaoDAO = new IntervencaoDAO();
 		List<Intervencao> intervencoes = intervencaoDAO.getAllByCaso(id);
 		caso.setIntervencoes(intervencoes);
+		
+		// Lista de tipos de intervenções
+		TipoIntervencaoDAO tipoIntervencaoDAO = new TipoIntervencaoDAO();
+		List<String> tipos_intervencao = tipoIntervencaoDAO.getAll();
+		request.setAttribute("tipos_intervencao", tipos_intervencao);
 		
     	request.setAttribute("caso", caso);
 		request.getRequestDispatcher("caso.jsp").forward(request, response);
