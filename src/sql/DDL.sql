@@ -36,6 +36,7 @@ create table t_cso_caso (
     data_fim_prev	date,
     data_fim		date,
     servidor		varchar(11),
+    nomeServidor	varchar(255),
     psi				varchar(11)
 );
 

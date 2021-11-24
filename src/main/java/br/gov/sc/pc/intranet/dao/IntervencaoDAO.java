@@ -61,7 +61,7 @@ public class IntervencaoDAO {
 		
 		try {
 			conexao = DBManager.obterConexao();
-			stmt = conexao.prepareStatement("select * from t_cso_intervencao where caso = ? order by data desc");
+			stmt = conexao.prepareStatement("select * from t_cso_intervencao where caso = ? order by data asc");
 			stmt.setInt(1, caso);
 			rs = stmt.executeQuery();
 		

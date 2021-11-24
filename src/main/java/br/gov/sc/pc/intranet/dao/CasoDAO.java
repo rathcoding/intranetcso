@@ -41,7 +41,7 @@ public class CasoDAO {
 			stmt.setDate(5, caso.getData_fim_prev());
 			stmt.setDate(6, caso.getData_fim());
 			stmt.setString(7, caso.getPsi());
-			stmt.setString(8, caso.getServidor());
+			stmt.setString(8, caso.getServidor().getCPF());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -77,8 +77,8 @@ public class CasoDAO {
 			    Date data_inicio = rs.getDate("data_inicio");
 			    Date data_fim_prev = rs.getDate("data_fim_prev");
 				Date data_fim = rs.getDate("data_fim");
-			    String servidor = rs.getString("servidor");
-				Caso caso = new Caso(id, sgpe, tipo, cid, data_inicio, data_fim_prev, data_fim, psi, servidor);
+			    String servidorCPF = rs.getString("servidor");
+				Caso caso = new Caso(id, sgpe, tipo, cid, data_inicio, data_fim_prev, data_fim, psi, servidorCPF);
 				lista.add(caso);
 			}
 		} catch (SQLException e) {
@@ -183,7 +183,7 @@ public class CasoDAO {
 			stmt.setDate(5, caso.getData_fim_prev());
 			stmt.setDate(6, caso.getData_fim());
 			stmt.setString(7, caso.getPsi());
-			stmt.setString(8, caso.getServidor());
+			stmt.setString(8, caso.getServidorCPF());
 			stmt.setInt(9, caso.getId());
 			stmt.executeUpdate();
 		} catch (SQLException e) {

@@ -19,7 +19,7 @@ public class UserFilter implements Filter {
 		HttpSession session = req.getSession();
 		String url = req.getRequestURI();
 		
-		if (session.getAttribute("user") == null) {// && !url.endsWith("usuario")) {
+		if (session.getAttribute("user") == null && !url.endsWith("usuario")) {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}else {
 			chain.doFilter(request, response);

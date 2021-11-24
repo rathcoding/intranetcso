@@ -135,8 +135,8 @@ public class Testes {
 	    Date data_fim_prev = Date.valueOf("2021-07-30");
 		Date data_fim = null;
 		String psi = "02925522971";
-	    String servidor = "02925522971";
-		Caso caso = new Caso(sgpe, tipo, cid, data_inicio, data_fim_prev, data_fim, servidor, psi);
+	    String servidorCPF = "02925522971";
+		Caso caso = new Caso(sgpe, tipo, cid, data_inicio, data_fim_prev, data_fim, psi, servidorCPF);
 		
 		CasoDAO casoDAO = new CasoDAO();
 		casoDAO.cadastrar(caso);
@@ -148,6 +148,9 @@ public class Testes {
 		
 		CasoDAO casoDAO = new CasoDAO();
 		Caso caso = casoDAO.getOneById(1);
+	    ServidorDAO servidorDAO = new ServidorDAO();
+		Servidor servidor = servidorDAO.getOneByCPF(caso.getServidorCPF());
+		caso.setServidor(servidor);
 		System.out.println(caso.toString());
 		return;
 		
@@ -159,7 +162,11 @@ public class Testes {
 		List<Caso> list = casoDAO.getAllByPsi("02925522971"); 
 		
 		for (Caso caso : list) {
+		    ServidorDAO servidorDAO = new ServidorDAO();
+			Servidor servidor = servidorDAO.getOneByCPF(caso.getServidorCPF());
+			caso.setServidor(servidor);
 			System.out.println(caso.toString());
+			System.out.println("\t"+ caso.getServidor().toString());
 		}
 		
 		return;
@@ -223,7 +230,7 @@ public class Testes {
 	
 	private static void getIntervencaoById() {
 		IntervencaoDAO intervencaoDAO = new IntervencaoDAO();
-		Intervencao intervencao = intervencaoDAO.getOneById(1);
+		Intervencao intervencao = intervencaoDAO.getOneById(4);
 		System.out.println(intervencao.toString());
 		
 	}

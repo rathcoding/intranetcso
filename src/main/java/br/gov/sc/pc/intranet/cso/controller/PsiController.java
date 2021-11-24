@@ -26,7 +26,6 @@ public class PsiController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String acao = request.getParameter("acao");
-		System.out.println("PsiController.acao: " + acao); // DEBUGGER
 		
         switch (acao) {
 	        case "criar":
@@ -65,11 +64,9 @@ public class PsiController extends HttpServlet {
 		
 		String cpf = request.getParameter("cpf");
 		String senha = request.getParameter("senha");
-		System.out.println("cpf=" + cpf + " senha=" + senha); // DEBUGGER
 		
 		PsiDAO psiDAO = new PsiDAO();
 		Psi psi = psiDAO.getOneByCPF(cpf);
-		System.out.println(psi.toString()); // DEBUGGER
 		
 		String senha_cripto = "";
 		try {
@@ -78,7 +75,6 @@ public class PsiController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		System.out.println("psi.getSenha()=" + psi.getSenha() + " senha_cripto=" + senha_cripto); // DEBUGGER
 		if (psi == null || !psi.getSenha().equals(senha_cripto)) {
 			request.setAttribute("erro", "CPF e/ou senha inválido.");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -87,7 +83,6 @@ public class PsiController extends HttpServlet {
 			session.setAttribute("user", psi.getCPF());
 			System.out.println("Login: " + session.getAttribute("user"));
 			request.getRequestDispatcher("caso?acao=getAllByPsi").forward(request, response);	
-//			request.getRequestDispatcher("home.jsp").forward(request, response);	
 		}
 				
 	}

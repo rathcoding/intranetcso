@@ -11,7 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.gov.sc.pc.intranet.cso.entities.Caso;
+import br.gov.sc.pc.intranet.cso.entities.Intervencao;
+import br.gov.sc.pc.intranet.cso.entities.Servidor;
 import br.gov.sc.pc.intranet.dao.CasoDAO;
+import br.gov.sc.pc.intranet.dao.IntervencaoDAO;
+import br.gov.sc.pc.intranet.dao.ServidorDAO;
 
 
 @WebServlet("/caso")
@@ -33,7 +37,6 @@ public class CasoController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String acao = request.getParameter("acao");
-		System.out.println("CasoController.acao: " + acao); // DEBUGGER
 		
         switch (acao) {
 //	        case "criar":
@@ -52,17 +55,40 @@ public class CasoController extends HttpServlet {
 
 
 	private void getAllByPsi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
 		String user = (String) session.getAttribute("user");
+		
 		CasoDAO casoDAO = new CasoDAO();
 		List<Caso> casos = casoDAO.getAllByPsi(user);
+		
+		for (Caso caso : casos) {
+		    ServidorDAO servidorDAO = new ServidorDAO();
+			Servidor servidor = servidorDAO.getOneByCPF(caso.getServidorCPF());
+			caso.setServidor(servidor);
+		}
+		
     	request.setAttribute("casos", casos);
 		request.getRequestDispatcher("home.jsp").forward(request, response);
 		
 	}
 
-	private void getOneById(HttpServletRequest request, HttpServletResponse response) {
+	private void getOneById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		CasoDAO casoDAO = new CasoDAO();
+		Caso caso = casoDAO.getOneById(id);
+		
+	    ServidorDAO servidorDAO = new ServidorDAO();
+		Servidor servidor = servidorDAO.getOneByCPF(caso.getServidorCPF());
+		caso.setServidor(servidor);
+		
+		IntervencaoDAO intervencaoDAO = new IntervencaoDAO();
+		List<Intervencao> intervencoes = intervencaoDAO.getAllByCaso(id);
+		caso.setIntervencoes(intervencoes);
+		
+    	request.setAttribute("caso", caso);
+		request.getRequestDispatcher("caso.jsp").forward(request, response);
 		
 	}
 

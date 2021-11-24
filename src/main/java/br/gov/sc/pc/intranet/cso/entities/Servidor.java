@@ -2,6 +2,7 @@ package br.gov.sc.pc.intranet.cso.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 public class Servidor implements Serializable {
 
@@ -18,6 +19,7 @@ public class Servidor implements Serializable {
 	private String telefone;
 	private String celular;
 	private String unidade;
+	private List<Caso> casos;
 		
 	
 	public Servidor() {
@@ -126,6 +128,14 @@ public class Servidor implements Serializable {
 	
 	public void setUnidade(String unidade) {
 		this.unidade = unidade;
+	}
+	
+	public List<Caso> getCasos(){
+		return casos;
+	}
+	
+	public void setCasos(List<Caso> casos) {
+		this.casos = casos;
 	}
 
 	@Override

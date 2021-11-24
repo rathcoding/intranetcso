@@ -2,6 +2,7 @@ package br.gov.sc.pc.intranet.cso.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 public class Caso implements Serializable {
 
@@ -14,16 +15,34 @@ public class Caso implements Serializable {
     private Date data_inicio;
     private Date data_fim_prev;
 	private Date data_fim;
-	private String servidor;
 	private String psi;
+	private String servidorCPF;
+	private Servidor servidor;
+	private List<Intervencao> intervencoes;
 
 	
 	public Caso() {
 		super();
 	}
 
+//	public Caso(Integer id, String sgpe, String tipo, String cid, Date data_inicio, Date data_fim_prev,
+//			Date data_fim, String psi, String servidorCPF, Servidor servidor) {
+//		super();
+//		this.id = id;
+//		this.sgpe = sgpe;
+//		this.tipo = tipo;
+//		this.cid = cid;
+//		this.data_inicio = data_inicio;
+//		this.data_fim_prev = data_fim_prev;
+//		this.data_fim = data_fim;
+//		this.psi = psi;
+//		this.servidorCPF = servidorCPF;
+//		this.servidor = servidor;
+//		
+//	}
+
 	public Caso(Integer id, String sgpe, String tipo, String cid, Date data_inicio, Date data_fim_prev,
-			Date data_fim, String psi, String servidor) {
+			Date data_fim, String psi, String servidorCPF) {
 		super();
 		this.id = id;
 		this.sgpe = sgpe;
@@ -32,13 +51,13 @@ public class Caso implements Serializable {
 		this.data_inicio = data_inicio;
 		this.data_fim_prev = data_fim_prev;
 		this.data_fim = data_fim;
-		this.servidor = servidor;
 		this.psi = psi;
+		this.servidorCPF = servidorCPF;
 		
 	}
-
+	
 	public Caso(String sgpe, String tipo, String cid, Date data_inicio, Date data_fim_prev,
-			Date data_fim, String psi, String servidor) {
+			Date data_fim, String psi, String servidorCPF) {
 		super();
 		this.id = 0;
 		this.sgpe = sgpe;
@@ -47,8 +66,8 @@ public class Caso implements Serializable {
 		this.data_inicio = data_inicio;
 		this.data_fim_prev = data_fim_prev;
 		this.data_fim = data_fim;
-		this.servidor = servidor;
 		this.psi = psi;
+		this.servidorCPF = servidorCPF;
 		
 	}
 	
@@ -107,7 +126,7 @@ public class Caso implements Serializable {
 	public void setData_fim(Date data_fim) {
 		this.data_fim = data_fim;
 	}
-
+	
 	public String getPsi() {
 		return psi;
 	}
@@ -115,20 +134,36 @@ public class Caso implements Serializable {
 	public void setPsi(String psi) {
 		this.psi = psi;
 	}
+	
+	public String getServidorCPF() {
+		return servidorCPF;
+	}
 
-	public String getServidor() {
+	public void setServidorCPF(String servidorCPF) {
+		this.servidorCPF = servidorCPF;
+	}
+	
+	public Servidor getServidor() {
 		return servidor;
 	}
 
-	public void setServidor(String servidor) {
+	public void setServidor(Servidor servidor) {
 		this.servidor = servidor;
 	}
 
-	@Override
-	public String toString() {
-		return "Caso [id=" + id + ", sgpe=" + sgpe + ", tipo=" + tipo + ", cid=" + cid + ", data_inicio=" + data_inicio
-				+ ", data_fim_prev=" + data_fim_prev + ", data_fim=" + data_fim + ", servidor=" + servidor + ", psi="
-				+ psi + "]";
+	public List<Intervencao> getIntervencoes() {
+		return intervencoes;
 	}
 	
+	public void setIntervencoes(List<Intervencao> intervencoes) {
+		this.intervencoes = intervencoes;
+	}
+	
+	@Override
+	public String toString() {
+		return "Caso [id=" + id + ", sgpe=" + sgpe + ", tipo=" + tipo + ", cid=" + cid 
+				+ ", data_inicio=" + data_inicio + ", data_fim_prev=" + data_fim_prev 
+				+ ", data_fim=" + data_fim + ", psi=" + psi + ", servidorCPF=" + servidorCPF + "]";
+	}
+
 }
