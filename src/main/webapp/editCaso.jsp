@@ -106,7 +106,8 @@
 					<div class="form-group">
 						<input type="hidden" name="id" value="${caso.id}">
 						<input type="hidden" name="acao" value="updateOne">
-						<input class="btn btn-secondary mt-2" type="submit" value="Atualizar">
+						<input class="btn btn-warning mt-2" type="submit" value="Atualizar">
+						<input class="btn btn-secondary mt-2" value="Cancelar" onCLick="history.back()">
 					</div>
 					
 				</fieldset>

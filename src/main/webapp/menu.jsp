@@ -13,7 +13,7 @@
 </header>
 
 <div class="btn-toolbar justify-content-between bg-dark bg-gradient" role="toolbar" aria-label="Toolbar with button groups">
-	<div class="btn-group" role="group" aria-label="First group">
+	<div class="btn-group" role="group" aria-label="Esquerda">
 		<form class="form-inline m-1" action="caso" method="post" accept-charset="ISO-8859-1">
 			<input type="hidden" name="acao" value="getAllByPsi">
 			<button class="btn btn-outline-light my-2 my-sm-0" type="submit" ${empty user ? 'disabled' : ''}>Casos</button>
@@ -24,8 +24,11 @@
 		</form>
 	</div>
 
+	<div class="btn-group" role="group" aria-label="Meio">
+		<span class="d-flex text-light align-items-center">${user.nome}</span>
+	</div>
 
-	<div class="btn-group">
+	<div class="btn-group" role="group" aria-label="Direita">
     	<form class="form-inline m-1" action="alterarSenha.jsp">
 			<button class="btn btn-outline-light my-2 my-sm-0" type="submit" ${empty user ? 'hidden' : ''}>Alterar Senha</button>			
 		</form>

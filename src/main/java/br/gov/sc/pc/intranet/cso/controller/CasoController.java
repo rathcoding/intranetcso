@@ -90,7 +90,6 @@ public class CasoController extends HttpServlet {
 		
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		
-		
 		IntervencaoDAO intervencaoDAO = new IntervencaoDAO();
 		List<Intervencao> intervencoes = intervencaoDAO.getAllByCaso(id);
 		for (Intervencao intervencao : intervencoes) {

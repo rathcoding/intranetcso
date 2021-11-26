@@ -47,7 +47,7 @@
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 											<form class="form-inline m-1" action="caso" method="post" accept-charset="ISO-8859-1">
-												<input type="hidden" name="acao" value="delete">
+												<input type="hidden" name="acao" value="deleteOne">
 												<input type="hidden" name="id" value="${c.id}">
 												<button class="btn btn-danger" type="submit">Excluir</button>
 											</form>
