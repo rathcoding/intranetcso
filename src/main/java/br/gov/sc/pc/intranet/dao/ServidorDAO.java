@@ -35,7 +35,7 @@ public class ServidorDAO {
 					+ " unidade)"
 					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			stmt = conexao.prepareStatement(sql);
-			stmt.setString(1, servidor.getCPF());
+			stmt.setString(1, servidor.getCpf());
 			stmt.setString(2, servidor.getNome());
 			stmt.setString(3, servidor.getCargo());
 			stmt.setDate(4, servidor.getData_nascimento());
@@ -60,7 +60,7 @@ public class ServidorDAO {
 		
 	}
 
-	public Servidor getOneByCPF(String cpf) {
+	public Servidor getOneByCpf(String cpf) {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		

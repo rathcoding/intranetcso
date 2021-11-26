@@ -1,6 +1,7 @@
 package br.gov.sc.pc.intranet.cso.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.gov.sc.pc.intranet.cso.dto.PsiDTO;
 import br.gov.sc.pc.intranet.cso.entities.Psi;
 import br.gov.sc.pc.intranet.cso.util.Criptografia;
 import br.gov.sc.pc.intranet.dao.PsiDAO;
@@ -28,8 +30,8 @@ public class PsiController extends HttpServlet {
 		String acao = request.getParameter("acao");
 		
         switch (acao) {
-	        case "criar":
-				criar(request, response);
+	        case "cadastrar":
+				cadastrar(request, response);
 				break;
 	        case "login":
 				login(request, response);
@@ -37,20 +39,25 @@ public class PsiController extends HttpServlet {
 	        case "logout":
 	            logout(request, response);
 	            break;
+	        case "alterarSenha":
+	        	alterarSenha(request, response);
+	        	break;
 	        default:
 	        	request.getRequestDispatcher("login.jsp").forward(request, response);
         }
 	}
 	
-	protected void criar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void cadastrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String cpf = request.getParameter("cpf");
+		String nome = request.getParameter("nome");
 		String senha = request.getParameter("senha");
 		String lotacao = request.getParameter("lotacao");
-		Integer acesso = 0;
-		acesso = Integer.parseInt(request.getParameter("acesso"));
+		Integer acesso = Integer.parseInt(request.getParameter("acesso"));
 		
-		Psi psi = new Psi(cpf, senha, lotacao, acesso);
+		Psi psi = new Psi(cpf, nome, null, lotacao, acesso);
+		psi.setSenha(senha);
 		PsiDAO psiDAO = new PsiDAO();
 		psiDAO.cadastrar(psi);
 		
@@ -66,7 +73,7 @@ public class PsiController extends HttpServlet {
 		String senha = request.getParameter("senha");
 		
 		PsiDAO psiDAO = new PsiDAO();
-		Psi psi = psiDAO.getOneByCPF(cpf);
+		Psi psi = psiDAO.getOneByCpf(cpf);
 		
 		String senha_cripto = "";
 		try {
@@ -80,8 +87,16 @@ public class PsiController extends HttpServlet {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		} else {
 			HttpSession session = request.getSession();
-			session.setAttribute("user", psi.getCPF());
+			
+			PsiDTO psiDTO = new PsiDTO(psi.getCpf(), psi.getNome(), psi.getLotacao(), psi.getAcesso() );
+			session.setAttribute("user", psiDTO);
 			System.out.println("Login: " + session.getAttribute("user"));
+			
+//			// Salva Lista de Servidores na Session
+//			ServidorDAO servidorDAO = new ServidorDAO();
+//			List<Servidor> servidores = servidorDAO.getAll();
+//			request.setAttribute("servidores", servidores);
+//			
 			request.getRequestDispatcher("caso?acao=getAllByPsi").forward(request, response);	
 		}
 				
@@ -96,4 +111,39 @@ public class PsiController extends HttpServlet {
 		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 
+	
+	private void alterarSenha(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		PsiDTO psiDTO = (PsiDTO) session.getAttribute("user");
+
+		PsiDAO psiDAO = new PsiDAO();
+		Psi psi = psiDAO.getOneByCpf(psiDTO.getCpf());
+		
+		String senha = request.getParameter("senha");
+		String senha_cripto = "";
+		try {
+			senha_cripto = Criptografia.criptografar(senha);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (psi == null || !psi.getSenha().equals(senha_cripto)) {
+			request.setAttribute("senhaErrada", "Senha incorreta.");
+			request.getRequestDispatcher("alterarSenha.jsp").forward(request, response);
+		} else {
+			String senhaNova1 = request.getParameter("senhaNova1");
+			String senhaNova2 = request.getParameter("senhaNova2");
+			
+			if (senhaNova1.equals(senhaNova2)) {
+				psi.setSenha(senhaNova1);
+				psiDAO.updateOne(psi);
+				request.setAttribute("sucesso", "Senha atualizada com sucesso!");
+				request.getRequestDispatcher("alterarSenha.jsp").forward(request, response);			
+			} else {
+				request.setAttribute("senhaNovaErrada", "Senhas novas diferentes.");
+				request.getRequestDispatcher("alterarSenha.jsp").forward(request, response);				
+			}
+		}
+	}
 }

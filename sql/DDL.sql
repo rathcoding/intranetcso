@@ -1,10 +1,11 @@
-drop table if exists t_cso_psi cascade;
-drop table if exists t_cso_servidor cascade;
-drop table if exists t_cso_caso cascade;
 drop table if exists t_cso_intervencao cascade;
+drop table if exists t_cso_caso cascade;
+drop table if exists t_cso_servidor cascade;
+drop table if exists t_cso_psi cascade;
 
 create table t_cso_psi (
     cpf 			varchar(11) primary key,
+    nome			varchar(255),
     senha			varchar(255),
     lotacao 		varchar(6),
     acesso			int default 0
@@ -35,13 +36,14 @@ create table t_cso_caso (
     data_inicio		date,
     data_fim_prev	date,
     data_fim		date,
-    servidor		varchar(11),
+    cpfServidor		varchar(11),
     nomeServidor	varchar(255),
-    psi				varchar(11)
+    cpfPsi			varchar(11),
+    nomePsi			varchar(255)
 );
 
-alter table t_cso_caso add constraint fk_caso_psi foreign key (psi) references t_cso_psi(cpf);
-alter table t_cso_caso add constraint fk_caso_servidor foreign key (servidor) references t_cso_servidor(cpf);
+alter table t_cso_caso add constraint fk_caso_psi foreign key (cpfPsi) references t_cso_psi(cpf);
+alter table t_cso_caso add constraint fk_caso_servidor foreign key (cpfServidor) references t_cso_servidor(cpf);
 
 create table t_cso_intervencao (
 	id 				int auto_increment primary key,
@@ -50,12 +52,16 @@ create table t_cso_intervencao (
     hora			time,
     notas		 	varchar(1000),
     psi				varchar(13),
+    nome_psi		varchar(255),
     caso			int
 );
 
 alter table t_cso_intervencao add constraint fk_intervencao_psi foreign key (psi) references t_cso_psi(cpf);
 alter table t_cso_intervencao add constraint fk_intervencao_caso foreign key (caso) references t_cso_caso(id);
 
+create table t_cso_tipo_caso (
+	tipo 			varchar(255) primary key
+);
 
 create table t_cso_tipo_intervencao (
 	tipo 			varchar(255) primary key

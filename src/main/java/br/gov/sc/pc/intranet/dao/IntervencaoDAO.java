@@ -29,15 +29,17 @@ public class IntervencaoDAO {
 						+ " hora,"
 						+ " notas,"
 						+ " psi,"
+						+ " nome_psi,"
 						+ " caso)"
-						+ "VALUES (0, ?, ?, ?, ?, ?, ?)";
+						+ "VALUES (0, ?, ?, ?, ?, ?, ?, ?)";
 			stmt = conexao.prepareStatement(sql);
 			stmt.setString(1, intervencao.getTipo());
 			stmt.setDate(2, intervencao.getData());
 			stmt.setTime(3, intervencao.getHora());
 			stmt.setString(4, intervencao.getNotas());
 			stmt.setString(5, intervencao.getPsi());
-			stmt.setInt(6, intervencao.getCaso());
+			stmt.setString(6, intervencao.getNomePsi());
+			stmt.setInt(7, intervencao.getCaso());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -73,7 +75,8 @@ public class IntervencaoDAO {
 			    Time hora = rs.getTime("hora");
 			    String notas = rs.getString("notas");
 			    String psi = rs.getString("psi");
-				Intervencao intervencao = new Intervencao(id, tipo, data, hora, notas, psi, caso);
+			    String nomePsi = rs.getString("nome_psi");
+				Intervencao intervencao = new Intervencao(id, tipo, data, hora, notas, psi, nomePsi, caso);
 				lista.add(intervencao);
 			}
 		} catch (SQLException e) {
@@ -109,8 +112,9 @@ public class IntervencaoDAO {
 			    Time hora = rs.getTime("hora");
 			    String notas = rs.getString("notas");
 			    String psi = rs.getString("psi");
+			    String nomePsi = rs.getString("nome_psi");
 				Integer caso = rs.getInt("caso");
-				intervencao = new Intervencao(id, tipo, data, hora, notas, psi, caso);
+				intervencao = new Intervencao(id, tipo, data, hora, notas, psi, nomePsi, caso);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

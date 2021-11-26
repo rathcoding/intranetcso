@@ -1,24 +1,37 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark navbar-right">
-	<div class="container-fluid">
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		  	<ul class="navbar-nav mr-auto">
-		  		<li class="nav-item">
-					<form class="form-inline m-1" action="caso" method="post" accept-charset="ISO-8859-1">
-						<input type="hidden" name="acao" value="getAllByPsi">
-						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Home</button>
-					</form>
-				</li>
-				<li class="nav-item">
-					<form class="form-inline m-1" action="usuario" method="post" accept-charset="ISO-8859-1">
-						<input type="hidden" name="acao" value="logout">
-						<button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sair</button>
-					</form>
-				</li>
-			</ul>
+<header class="bg-dark">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2">
+				<img src="resources/img/logo.png"/>
+			</div>
+			<div class="col-md-10 text-light">
+				<h3>Polícia Civil do Estado de Santa Catarina</h3>
+				<h4>Intranet CSO</h4>
+			</div>
 		</div>
 	</div>
-</nav>
+</header>
+
+<div class="btn-toolbar justify-content-between bg-dark bg-gradient" role="toolbar" aria-label="Toolbar with button groups">
+	<div class="btn-group" role="group" aria-label="First group">
+		<form class="form-inline m-1" action="caso" method="post" accept-charset="ISO-8859-1">
+			<input type="hidden" name="acao" value="getAllByPsi">
+			<button class="btn btn-outline-light my-2 my-sm-0" type="submit" ${empty user ? 'disabled' : ''}>Casos</button>
+		</form>
+		<form class="form-inline m-1" action="servidor" method="post" accept-charset="ISO-8859-1">
+			<input type="hidden" name="acao" value="buscarForm">
+			<button class="btn btn-outline-light my-2 my-sm-0" type="submit" ${empty user ? 'disabled' : ''}>Servidores</button>
+		</form>
+	</div>
+
+
+	<div class="btn-group">
+    	<form class="form-inline m-1" action="alterarSenha.jsp">
+			<button class="btn btn-outline-light my-2 my-sm-0" type="submit" ${empty user ? 'hidden' : ''}>Alterar Senha</button>			
+		</form>
+		<form class="form-inline m-1" action="usuario" method="post" accept-charset="ISO-8859-1">
+			<input type="hidden" name="acao" value="logout">
+			<button class="btn btn-outline-danger my-2 my-sm-0" type="submit" ${empty user ? 'hidden' : ''}>Sair</button>
+		</form>
+	</div>
+</div>

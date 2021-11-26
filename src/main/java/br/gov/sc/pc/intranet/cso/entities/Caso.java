@@ -15,8 +15,10 @@ public class Caso implements Serializable {
     private Date data_inicio;
     private Date data_fim_prev;
 	private Date data_fim;
-	private String psi;
-	private String servidorCPF;
+	private String cpfServidor;
+	private String nomeServidor;
+	private String cpfPsi;
+	private String nomePsi;
 	private Servidor servidor;
 	private List<Intervencao> intervencoes;
 
@@ -25,24 +27,8 @@ public class Caso implements Serializable {
 		super();
 	}
 
-//	public Caso(Integer id, String sgpe, String tipo, String cid, Date data_inicio, Date data_fim_prev,
-//			Date data_fim, String psi, String servidorCPF, Servidor servidor) {
-//		super();
-//		this.id = id;
-//		this.sgpe = sgpe;
-//		this.tipo = tipo;
-//		this.cid = cid;
-//		this.data_inicio = data_inicio;
-//		this.data_fim_prev = data_fim_prev;
-//		this.data_fim = data_fim;
-//		this.psi = psi;
-//		this.servidorCPF = servidorCPF;
-//		this.servidor = servidor;
-//		
-//	}
-
 	public Caso(Integer id, String sgpe, String tipo, String cid, Date data_inicio, Date data_fim_prev,
-			Date data_fim, String psi, String servidorCPF) {
+			Date data_fim, String cpfServidor, String nomeServidor, String cpfPsi, String nomePsi) {
 		super();
 		this.id = id;
 		this.sgpe = sgpe;
@@ -51,13 +37,15 @@ public class Caso implements Serializable {
 		this.data_inicio = data_inicio;
 		this.data_fim_prev = data_fim_prev;
 		this.data_fim = data_fim;
-		this.psi = psi;
-		this.servidorCPF = servidorCPF;
+		this.cpfServidor = cpfServidor;
+		this.nomeServidor = nomeServidor;
+		this.cpfPsi = cpfPsi;
+		this.nomePsi = nomePsi;
 		
 	}
 	
 	public Caso(String sgpe, String tipo, String cid, Date data_inicio, Date data_fim_prev,
-			Date data_fim, String psi, String servidorCPF) {
+			Date data_fim, String cpfServidor, String nomeServidor, String cpfPsi, String nomePsi) {
 		super();
 		this.id = 0;
 		this.sgpe = sgpe;
@@ -66,8 +54,10 @@ public class Caso implements Serializable {
 		this.data_inicio = data_inicio;
 		this.data_fim_prev = data_fim_prev;
 		this.data_fim = data_fim;
-		this.psi = psi;
-		this.servidorCPF = servidorCPF;
+		this.cpfServidor = cpfServidor;
+		this.nomeServidor = nomeServidor;
+		this.cpfPsi = cpfPsi;
+		this.nomePsi = nomePsi;
 		
 	}
 	
@@ -127,20 +117,35 @@ public class Caso implements Serializable {
 		this.data_fim = data_fim;
 	}
 	
-	public String getPsi() {
-		return psi;
+	public String getCpfServidor() {
+		return cpfServidor;
 	}
 
-	public void setPsi(String psi) {
-		this.psi = psi;
+	public void setCpfServidor(String cpfServidor) {
+		this.cpfServidor = cpfServidor;
 	}
 	
-	public String getServidorCPF() {
-		return servidorCPF;
+	public String getNomeServidor() {
+		return nomeServidor;
 	}
 
-	public void setServidorCPF(String servidorCPF) {
-		this.servidorCPF = servidorCPF;
+	public void setNomeServidor(String nomeServidor) {
+		this.nomeServidor = nomeServidor;
+	}
+	
+	public String getCpfPsi() {
+		return cpfPsi;
+	}
+
+	public void setCpfPsi(String cpfPsi) {
+		this.cpfPsi = cpfPsi;
+	}
+	public String getNomePsi() {
+		return nomePsi;
+	}
+
+	public void setNomePsi(String nomePsi) {
+		this.nomePsi = nomePsi;
 	}
 	
 	public Servidor getServidor() {
@@ -158,12 +163,12 @@ public class Caso implements Serializable {
 	public void setIntervencoes(List<Intervencao> intervencoes) {
 		this.intervencoes = intervencoes;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Caso [id=" + id + ", sgpe=" + sgpe + ", tipo=" + tipo + ", cid=" + cid 
-				+ ", data_inicio=" + data_inicio + ", data_fim_prev=" + data_fim_prev 
-				+ ", data_fim=" + data_fim + ", psi=" + psi + ", servidorCPF=" + servidorCPF + "]";
+		return "Caso [id=" + id + ", sgpe=" + sgpe + ", tipo=" + tipo + ", cid=" + cid + ", data_inicio=" + data_inicio
+				+ ", data_fim_prev=" + data_fim_prev + ", data_fim=" + data_fim + ", cpfServidor=" + cpfServidor
+				+ ", nomeServidor=" + nomeServidor + ", cpfPsi=" + cpfPsi + ", nomePsi=" + nomePsi + "]";
 	}
 
 }

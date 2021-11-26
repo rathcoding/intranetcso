@@ -42,11 +42,11 @@ public class Servidor implements Serializable {
 		this.unidade = unidade;
 	}
 
-	public String getCPF() {
+	public String getCpf() {
 		return cpf;
 	}
 	
-	public void setCPF(String cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 	

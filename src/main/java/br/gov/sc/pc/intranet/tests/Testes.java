@@ -18,7 +18,7 @@ public class Testes {
 	public static void main(String[] args) {
 		
 // TESTES PsiDAO ==================================================
-//		cadastrarPsi();
+		cadastrarPsi();
 		consultarPsi();
 		getAllPsi();
 
@@ -50,11 +50,39 @@ public class Testes {
 		PsiDAO psiDAO = new PsiDAO();
 		
 		String cpf = "02925522971";
+		String nome = "RAFAEL RATH";
 		String senha = "senha";
 		String lotacao = "DIFRON";
 		Integer acesso = 1;
 		
-		Psi psi = new Psi(cpf, senha, lotacao, acesso);
+		Psi psi = new Psi(cpf, nome, senha, lotacao, acesso);
+//		psiDAO.cadastrar(psi);
+
+		cpf = "02286340919";
+		nome = "JULIANA BELINCANTA";
+		senha = "pc123";
+		lotacao = "GEPES";
+		acesso = 2;
+		
+		psi = new Psi(cpf, nome, senha, lotacao, acesso);
+		psiDAO.cadastrar(psi);
+		
+		cpf = "88899454949";
+		nome = "MONICA HENRIQUE DA SILVA DE S THIAGO";
+		senha = "pc123";
+		lotacao = "GEPES";
+		acesso = 2;
+		
+		psi = new Psi(cpf, nome, senha, lotacao, acesso);
+		psiDAO.cadastrar(psi);
+
+		cpf = "00507766903";
+		nome = "MICHELLE VECCHI";
+		senha = "pc123";
+		lotacao = "DPGF";
+		acesso = 3;
+		
+		psi = new Psi(cpf, nome, senha, lotacao, acesso);
 		psiDAO.cadastrar(psi);
 		
 		return;
@@ -63,7 +91,7 @@ public class Testes {
 	public static void consultarPsi() {
 		
 		PsiDAO psiDAO = new PsiDAO();
-		Psi psi = psiDAO.getOneByCPF("02925522971");
+		Psi psi = psiDAO.getOneByCpf("02925522971");
 		System.out.println(psi.toString());		
 		return;
 	}
@@ -108,7 +136,7 @@ public class Testes {
 	public static void consultarServidor() {
 		
 		ServidorDAO servidorDAO = new ServidorDAO();
-		Servidor servidor = servidorDAO.getOneByCPF("02925522971");
+		Servidor servidor = servidorDAO.getOneByCpf("02925522971");
 		System.out.println(servidor.toString());		
 		return;
 	}
@@ -126,30 +154,31 @@ public class Testes {
 	}
 	
 // TESTES CasoDAO =================================================
-	private static void cadastrarCaso() {
-		
-		String sgpe = "PCSC 123456/2021";
-	    String tipo = "LTS";
-	    String cid = "F32.2";
-	    Date data_inicio = Date.valueOf("2021-07-01");
-	    Date data_fim_prev = Date.valueOf("2021-07-30");
-		Date data_fim = null;
-		String psi = "02925522971";
-	    String servidorCPF = "02925522971";
-		Caso caso = new Caso(sgpe, tipo, cid, data_inicio, data_fim_prev, data_fim, psi, servidorCPF);
-		
-		CasoDAO casoDAO = new CasoDAO();
-		casoDAO.cadastrar(caso);
-		return;
-		
-	}
+//	private static void cadastrarCaso() {
+//		
+//		String sgpe = "PCSC 123456/2021";
+//	    String tipo = "LTS";
+//	    String cid = "F32.2";
+//	    Date data_inicio = Date.valueOf("2021-07-01");
+//	    Date data_fim_prev = Date.valueOf("2021-07-30");
+//		Date data_fim = null;
+//		String psi = "02925522971";
+//	    String cpfServidor = "02925522971";
+//	    String nomeServidor 
+//		Caso caso = new Caso(sgpe, tipo, cid, data_inicio, data_fim_prev, data_fim, psi, servidorCPF);
+//		
+//		CasoDAO casoDAO = new CasoDAO();
+//		casoDAO.cadastrar(caso);
+//		return;
+//		
+//	}
 
 	private static void getCasoById() {
 		
 		CasoDAO casoDAO = new CasoDAO();
 		Caso caso = casoDAO.getOneById(1);
 	    ServidorDAO servidorDAO = new ServidorDAO();
-		Servidor servidor = servidorDAO.getOneByCPF(caso.getServidorCPF());
+		Servidor servidor = servidorDAO.getOneByCpf(caso.getCpfServidor());
 		caso.setServidor(servidor);
 		System.out.println(caso.toString());
 		return;
@@ -163,7 +192,7 @@ public class Testes {
 		
 		for (Caso caso : list) {
 		    ServidorDAO servidorDAO = new ServidorDAO();
-			Servidor servidor = servidorDAO.getOneByCPF(caso.getServidorCPF());
+			Servidor servidor = servidorDAO.getOneByCpf(caso.getCpfServidor());
 			caso.setServidor(servidor);
 			System.out.println(caso.toString());
 			System.out.println("\t"+ caso.getServidor().toString());
@@ -202,26 +231,25 @@ public class Testes {
 	    Time hora = Time.valueOf("00:56:00");
 	    String notas = "O primeiro atendimento foi individual....... blablabla";
 	    String psi = "02925522971";
+	    String nomePsi = "RAFAEL RATH";
 		Integer caso = 1;
-		Intervencao int1 = new Intervencao(tipo, data, hora, notas, psi, caso);
+		Intervencao int1 = new Intervencao(tipo, data, hora, notas, psi, nomePsi, caso);
 	    intervencaoDAO.cadastrar(int1);
 	    
 		tipo = "Avaliação de Porte de Arma de Fogo";
 		data = Date.valueOf("2021-08-01");
 	    hora = Time.valueOf("03:30:00");
 	    notas = "Considerado APTO para o porte.";
-	    psi = "02925522971";
 		caso = 1;
-		Intervencao int2 = new Intervencao(tipo, data, hora, notas, psi, caso);
+		Intervencao int2 = new Intervencao(tipo, data, hora, notas, psi, nomePsi, caso);
 	    intervencaoDAO.cadastrar(int2);
 	    
 	    tipo = "Acompanhamento";
 		data = Date.valueOf("2021-07-20");
 	    hora = Time.valueOf("00:22:00");
 	    notas = "Contato via Whastapp. Tratamento indo bem... blablabla";
-	    psi = "02925522971";
 		caso = 1;
-		Intervencao int3 = new Intervencao(tipo, data, hora, notas, psi, caso);
+		Intervencao int3 = new Intervencao(tipo, data, hora, notas, psi, nomePsi, caso);
 	    intervencaoDAO.cadastrar(int3);
 	    
 	    return;

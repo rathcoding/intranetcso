@@ -29,9 +29,11 @@ public class CasoDAO {
 						+ " data_inicio,"
 						+ " data_fim_prev,"
 						+ " data_fim,"
-						+ " psi,"
-						+ " servidor)"
-						+ "VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?)";
+						+ " cpfServidor,"
+						+ " nomeServidor,"
+						+ " cpfPsi,"
+						+ " nomePsi)"
+						+ "VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			stmt = conexao.prepareStatement(sql);
 			
 			stmt.setString(1, caso.getSgpe());
@@ -40,8 +42,10 @@ public class CasoDAO {
 			stmt.setDate(4, caso.getData_inicio());
 			stmt.setDate(5, caso.getData_fim_prev());
 			stmt.setDate(6, caso.getData_fim());
-			stmt.setString(7, caso.getPsi());
-			stmt.setString(8, caso.getServidor().getCPF());
+			stmt.setString(7, caso.getCpfServidor());
+			stmt.setString(8, caso.getNomeServidor());
+			stmt.setString(9, caso.getCpfPsi());
+			stmt.setString(10, caso.getNomePsi());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -65,7 +69,7 @@ public class CasoDAO {
 		
 		try {
 			conexao = DBManager.obterConexao();
-			stmt = conexao.prepareStatement("select * from t_cso_caso where psi = ? order by data_inicio desc");
+			stmt = conexao.prepareStatement("select * from t_cso_caso where cpfPsi = ? order by data_inicio desc");
 			stmt.setString(1, psi);
 			rs = stmt.executeQuery();
 		
@@ -77,8 +81,10 @@ public class CasoDAO {
 			    Date data_inicio = rs.getDate("data_inicio");
 			    Date data_fim_prev = rs.getDate("data_fim_prev");
 				Date data_fim = rs.getDate("data_fim");
-			    String servidorCPF = rs.getString("servidor");
-				Caso caso = new Caso(id, sgpe, tipo, cid, data_inicio, data_fim_prev, data_fim, psi, servidorCPF);
+			    String cpfServidor = rs.getString("cpfServidor");
+			    String nomeServidor = rs.getString("nomeServidor");
+			    String nomePsi = rs.getString("nomePsi");
+				Caso caso = new Caso(id, sgpe, tipo, cid, data_inicio, data_fim_prev, data_fim, cpfServidor, nomeServidor, psi, nomePsi);
 				lista.add(caso);
 			}
 		} catch (SQLException e) {
@@ -115,9 +121,11 @@ public class CasoDAO {
 			    Date data_inicio = rs.getDate("data_inicio");
 			    Date data_fim_prev = rs.getDate("data_fim_prev");
 				Date data_fim = rs.getDate("data_fim");
-				String psi = rs.getString("psi");
-			    String servidor = rs.getString("servidor");
-				caso = new Caso(id, sgpe, tipo, cid, data_inicio, data_fim_prev, data_fim, psi, servidor);
+			    String cpfServidor = rs.getString("cpfServidor");
+			    String nomeServidor = rs.getString("nomeServidor");
+				String cpfPsi = rs.getString("cpfPsi");
+				String nomePsi = rs.getString("nomePsi");
+				caso = new Caso(id, sgpe, tipo, cid, data_inicio, data_fim_prev, data_fim, cpfServidor, nomeServidor, cpfPsi, nomePsi);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -135,6 +143,47 @@ public class CasoDAO {
 		
 	}
 
+	public List<Caso> getAllByServidor(String cpf){
+		
+		List<Caso> lista = new ArrayList<Caso>();
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conexao = DBManager.obterConexao();
+			stmt = conexao.prepareStatement("select * from t_cso_caso where cpfServidor = ? order by data_inicio desc");
+			stmt.setString(1, cpf);
+			rs = stmt.executeQuery();
+		
+			while (rs.next()) {
+				Integer id = rs.getInt("id");
+				String sgpe = rs.getString("sgpe");
+			    String tipo = rs.getString("tipo");
+			    String cid = rs.getString("cid");
+			    Date data_inicio = rs.getDate("data_inicio");
+			    Date data_fim_prev = rs.getDate("data_fim_prev");
+				Date data_fim = rs.getDate("data_fim");
+			    String nomeServidor = rs.getString("nomeServidor");
+			    String cpfPsi = rs.getString("cpfPsi");
+			    String nomePsi = rs.getString("nomePsi");
+				Caso caso = new Caso(id, sgpe, tipo, cid, data_inicio, data_fim_prev, data_fim, cpf, nomeServidor, cpfPsi, nomePsi);
+				lista.add(caso);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				stmt.close();
+				rs.close();
+				conexao.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return lista;
+	}
 	
 	public void deleteOne (Integer id) {
 		
@@ -142,7 +191,7 @@ public class CasoDAO {
 		
 		try {
 			conexao = DBManager.obterConexao();
-			String sql = "delete from t_cso_caso where id = ? cascade";
+			String sql = "delete from t_cso_caso where id = ?";
 			stmt = conexao.prepareStatement(sql);
 			stmt.setInt(1, id);
 			stmt.executeUpdate();
@@ -172,8 +221,8 @@ public class CasoDAO {
 					+ " data_inicio = ?,"
 					+ " data_fim_prev = ?,"
 					+ " data_fim = ?,"
-					+ " psi = ?,"
-					+ " servidor = ?"
+					+ " cpfPsi = ?,"
+					+ " nomePsi = ?"
 					+ "WHERE id = ?";
 			stmt = conexao.prepareStatement(sql);
 			stmt.setString(1, caso.getSgpe());
@@ -182,8 +231,8 @@ public class CasoDAO {
 			stmt.setDate(4, caso.getData_inicio());
 			stmt.setDate(5, caso.getData_fim_prev());
 			stmt.setDate(6, caso.getData_fim());
-			stmt.setString(7, caso.getPsi());
-			stmt.setString(8, caso.getServidorCPF());
+			stmt.setString(7, caso.getCpfPsi());
+			stmt.setString(8, caso.getNomePsi());
 			stmt.setInt(9, caso.getId());
 			stmt.executeUpdate();
 		} catch (SQLException e) {

@@ -7,7 +7,8 @@
 </head>
 <body>
 	
-	<%@ include file="intranetoficial.jsp" %>
+	<%@ include file="menu.jsp" %>
+	
 	
 	<div class="container">
     	<div class="row">

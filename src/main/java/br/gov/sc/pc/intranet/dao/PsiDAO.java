@@ -21,12 +21,13 @@ public class PsiDAO {
 		
 		try {
 			conexao = DBManager.obterConexao();
-			String sql = "insert into t_cso_psi (cpf, senha, lotacao, acesso) VALUES (?, ?, ?, ?)";
+			String sql = "insert into t_cso_psi (cpf, nome, senha, lotacao, acesso) VALUES (?, ?, ?, ?, ?)";
 			stmt = conexao.prepareStatement(sql);
-			stmt.setString(1, psi.getCPF());
-			stmt.setString(2, psi.getSenha());
-			stmt.setString(3, psi.getLotacao());			
-			stmt.setInt(4, psi.getAcesso());
+			stmt.setString(1, psi.getCpf());
+			stmt.setString(2, psi.getNome());
+			stmt.setString(3, psi.getSenha());
+			stmt.setString(4, psi.getLotacao());			
+			stmt.setInt(5, psi.getAcesso());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -41,7 +42,7 @@ public class PsiDAO {
 		
 	}
 
-	public Psi getOneByCPF(String cpf) {
+	public Psi getOneByCpf(String cpf) {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
@@ -53,10 +54,11 @@ public class PsiDAO {
 			rs = stmt.executeQuery();
 			
 			if (rs.next()){
+				String nome = rs.getString("nome");
 				String senha = rs.getString("senha");
 				String lotacao = rs.getString("lotacao");
 				Integer acesso = rs.getInt("acesso");
-				Psi psi = new Psi(cpf, senha, lotacao, acesso);
+				Psi psi = new Psi(cpf, nome, senha, lotacao, acesso);
 				return psi;
 			}
 			
@@ -83,15 +85,16 @@ public class PsiDAO {
 		
 		try {
 			conexao = DBManager.obterConexao();
-			stmt = conexao.prepareStatement("select * from t_cso_psi");
+			stmt = conexao.prepareStatement("select * from t_cso_psi order by nome asc");
 			rs = stmt.executeQuery();
 		
 			while (rs.next()) {
 				String cpf = rs.getString("cpf");
+				String nome = rs.getString("nome");
 				String senha = rs.getString("senha");
 				String lotacao = rs.getString("lotacao");
 				Integer acesso = rs.getInt("acesso");
-				Psi psi = new Psi(cpf, senha, lotacao, acesso);
+				Psi psi = new Psi(cpf, nome, senha, lotacao, acesso);
 				lista.add(psi);
 			}
 		} catch (SQLException e) {
@@ -107,5 +110,35 @@ public class PsiDAO {
 		}
 		
 		return lista;
+	}
+	
+	public void updateOne (Psi psi) {
+		
+		PreparedStatement stmt = null;
+		
+		try {
+			conexao = DBManager.obterConexao();
+			String sql = "update t_cso_psi set "
+					+ "senha = ?, "
+					+ "lotacao = ?, "
+					+ "acesso = ? "
+					+ "WHERE cpf = ?";
+			stmt = conexao.prepareStatement(sql);
+			stmt.setString(1, psi.getSenha());
+			stmt.setString(2, psi.getLotacao());
+			stmt.setInt(3, psi.getAcesso());
+			stmt.setString(4, psi.getCpf());
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				conexao.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 }

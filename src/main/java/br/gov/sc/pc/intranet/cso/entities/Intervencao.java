@@ -14,13 +14,14 @@ public class Intervencao implements Serializable {
     private Time hora;
     private String notas;
     private String psi;
+    private String nomePsi;
     private Integer caso;
 	
     public Intervencao() {
 		super();
 	}
 
-	public Intervencao(Integer id, String tipo, Date data, Time hora, String notas, String psi, Integer caso) {
+	public Intervencao(Integer id, String tipo, Date data, Time hora, String notas, String psi, String nomePsi, Integer caso) {
 		super();
 		this.id = id;
 		this.tipo = tipo;
@@ -28,10 +29,11 @@ public class Intervencao implements Serializable {
 		this.hora = hora;
 		this.notas = notas;
 		this.psi = psi;
+		this.nomePsi = nomePsi;
 		this.caso = caso;
 	}
 
-	public Intervencao(String tipo, Date data, Time hora, String notas, String psi, Integer caso) {
+	public Intervencao(String tipo, Date data, Time hora, String notas, String psi, String nomePsi, Integer caso) {
 		super();
 		this.id = 0;
 		this.tipo = tipo;
@@ -39,6 +41,7 @@ public class Intervencao implements Serializable {
 		this.hora = hora;
 		this.notas = notas;
 		this.psi = psi;
+		this.nomePsi = nomePsi;
 		this.caso = caso;
 	}
 
@@ -89,6 +92,14 @@ public class Intervencao implements Serializable {
 	public void setPsi(String psi) {
 		this.psi = psi;
 	}
+	
+	public String getNomePsi() {
+		return nomePsi;
+	}
+	
+	public void setNomePsi(String nomePsi) {
+		this.nomePsi = nomePsi;
+	}
 
 	public Integer getCaso() {
 		return caso;
@@ -101,7 +112,7 @@ public class Intervencao implements Serializable {
 	@Override
 	public String toString() {
 		return "Intervencao [id=" + id + ", tipo=" + tipo + ", data=" + data + ", hora=" + hora + ", notas=" + notas
-				+ ", psi=" + psi + ", caso=" + caso + "]";
+				+ ", psi=" + psi + ", nomePsi=" + nomePsi + ", caso=" + caso + "]";
 	}
     
 }
