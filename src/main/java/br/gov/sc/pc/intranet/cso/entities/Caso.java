@@ -19,6 +19,7 @@ public class Caso implements Serializable {
 	private String nomeServidor;
 	private String cpfPsi;
 	private String nomePsi;
+	
 	private Servidor servidor;
 	private List<Intervencao> intervencoes;
 

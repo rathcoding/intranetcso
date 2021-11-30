@@ -4,7 +4,7 @@
 			<div class="col-md-2">
 				<img src="resources/img/logo.png"/>
 			</div>
-			<div class="col-md-10 text-light">
+			<div class="col-md-10 col-sm-10 col-lg-10 text-light">
 				<h3>Polícia Civil do Estado de Santa Catarina</h3>
 				<h4>Intranet CSO</h4>
 			</div>

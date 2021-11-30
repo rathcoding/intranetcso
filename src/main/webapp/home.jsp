@@ -39,11 +39,11 @@
 								<button type="button" class="btn btn-danger btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#confirmDelete">x</button>
 							</div>
 						<!-- Modal -->
-							<div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="excluiCasoModal" aria-hidden="true">
 								<div class="modal-dialog moodal-sm">
 									<div class="modal-content">
-										<div class="modal-header"><h5 class="modal-title" id="exampleModalLabel">Atenção!</h5></div>
-										<div class="modal-body">Confirmar exclusão?</div>
+										<div class="modal-header"><h5 class="modal-title" id="excluiCasoModal">Atenção!</h5></div>
+										<div class="modal-body">Confirmar exclusão do caso?</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 											<form class="form-inline m-1" action="caso" method="post" accept-charset="ISO-8859-1">

@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.gov.sc.pc.intranet.cso.dao.CasoDAO;
+import br.gov.sc.pc.intranet.cso.dao.ServidorDAO;
 import br.gov.sc.pc.intranet.cso.entities.Caso;
 import br.gov.sc.pc.intranet.cso.entities.Servidor;
-import br.gov.sc.pc.intranet.dao.CasoDAO;
-import br.gov.sc.pc.intranet.dao.ServidorDAO;
 
 
 @WebServlet("/servidor")

@@ -12,18 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.gov.sc.pc.intranet.cso.dao.CasoDAO;
+import br.gov.sc.pc.intranet.cso.dao.CidDAO;
+import br.gov.sc.pc.intranet.cso.dao.IntervencaoDAO;
+import br.gov.sc.pc.intranet.cso.dao.PsiDAO;
+import br.gov.sc.pc.intranet.cso.dao.ServidorDAO;
+import br.gov.sc.pc.intranet.cso.dao.TipoCasoDAO;
+import br.gov.sc.pc.intranet.cso.dao.TipoIntervencaoDAO;
 import br.gov.sc.pc.intranet.cso.dto.PsiDTO;
 import br.gov.sc.pc.intranet.cso.entities.Caso;
 import br.gov.sc.pc.intranet.cso.entities.Intervencao;
 import br.gov.sc.pc.intranet.cso.entities.Psi;
 import br.gov.sc.pc.intranet.cso.entities.Servidor;
-import br.gov.sc.pc.intranet.dao.CasoDAO;
-import br.gov.sc.pc.intranet.dao.CidDAO;
-import br.gov.sc.pc.intranet.dao.IntervencaoDAO;
-import br.gov.sc.pc.intranet.dao.PsiDAO;
-import br.gov.sc.pc.intranet.dao.ServidorDAO;
-import br.gov.sc.pc.intranet.dao.TipoCasoDAO;
-import br.gov.sc.pc.intranet.dao.TipoIntervencaoDAO;
 
 
 @WebServlet("/caso")
@@ -109,12 +109,6 @@ public class CasoController extends HttpServlet {
 		
 		CasoDAO casoDAO = new CasoDAO();
 		List<Caso> casos = casoDAO.getAllByPsi(user.getCpf());
-		
-//		for (Caso caso : casos) {
-//		    ServidorDAO servidorDAO = new ServidorDAO();
-//			Servidor servidor = servidorDAO.getOneByCpf(caso.getCpfServidor());
-//			caso.setServidor(servidor);
-//		}
 		
 		// Lista de tipos de Caso
 		TipoCasoDAO tipoCasoDAO = new TipoCasoDAO();

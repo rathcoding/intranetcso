@@ -4,14 +4,14 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
+import br.gov.sc.pc.intranet.cso.dao.CasoDAO;
+import br.gov.sc.pc.intranet.cso.dao.IntervencaoDAO;
+import br.gov.sc.pc.intranet.cso.dao.PsiDAO;
+import br.gov.sc.pc.intranet.cso.dao.ServidorDAO;
 import br.gov.sc.pc.intranet.cso.entities.Caso;
 import br.gov.sc.pc.intranet.cso.entities.Intervencao;
 import br.gov.sc.pc.intranet.cso.entities.Psi;
 import br.gov.sc.pc.intranet.cso.entities.Servidor;
-import br.gov.sc.pc.intranet.dao.CasoDAO;
-import br.gov.sc.pc.intranet.dao.IntervencaoDAO;
-import br.gov.sc.pc.intranet.dao.PsiDAO;
-import br.gov.sc.pc.intranet.dao.ServidorDAO;
 
 public class Testes {
 

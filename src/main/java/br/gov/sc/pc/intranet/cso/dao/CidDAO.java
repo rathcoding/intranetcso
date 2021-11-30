@@ -1,4 +1,4 @@
-package br.gov.sc.pc.intranet.dao;
+package br.gov.sc.pc.intranet.cso.dao;
 
 import java.io.Serializable;
 import java.sql.Connection;

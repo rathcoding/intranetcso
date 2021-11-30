@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.gov.sc.pc.intranet.cso.dao.PsiDAO;
 import br.gov.sc.pc.intranet.cso.dto.PsiDTO;
 import br.gov.sc.pc.intranet.cso.entities.Psi;
 import br.gov.sc.pc.intranet.cso.util.Criptografia;
-import br.gov.sc.pc.intranet.dao.PsiDAO;
 
 @WebServlet("/usuario")
 public class PsiController extends HttpServlet {
@@ -92,11 +92,6 @@ public class PsiController extends HttpServlet {
 			session.setAttribute("user", psiDTO);
 			System.out.println("Login: " + session.getAttribute("user"));
 			
-//			// Salva Lista de Servidores na Session
-//			ServidorDAO servidorDAO = new ServidorDAO();
-//			List<Servidor> servidores = servidorDAO.getAll();
-//			request.setAttribute("servidores", servidores);
-//			
 			request.getRequestDispatcher("caso?acao=getAllByPsi").forward(request, response);	
 		}
 				

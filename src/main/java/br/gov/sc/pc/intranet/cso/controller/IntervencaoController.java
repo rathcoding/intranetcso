@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.gov.sc.pc.intranet.cso.dao.IntervencaoDAO;
 import br.gov.sc.pc.intranet.cso.dto.PsiDTO;
 import br.gov.sc.pc.intranet.cso.entities.Intervencao;
-import br.gov.sc.pc.intranet.dao.IntervencaoDAO;
 
 @WebServlet("/intervencao")
 public class IntervencaoController extends HttpServlet {
@@ -71,6 +71,7 @@ public class IntervencaoController extends HttpServlet {
 	    Intervencao intervencao = intervencaoDAO.getOneById(id);
 	    Integer casoid = intervencao.getCaso();
 	    intervencaoDAO.deleteOne(id);
+System.out.println("DELETE INTERVENCAO: " + intervencao.toString() + " >>> casoid: " + casoid);
 	    
 		request.getRequestDispatcher("caso?acao=getOneById&id="+casoid).forward(request, response);
 

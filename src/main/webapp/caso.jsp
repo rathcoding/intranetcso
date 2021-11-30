@@ -39,14 +39,14 @@
 								</div>
 							</form>
 						<!-- Button trigger modal -->
-							<button type="button" class="btn btn-danger btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#confirmDelete" ${user.cpf==caso.cpfPsi ? '' : 'disabled'}>x</button>
+							<button type="button" class="btn btn-danger btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#confirmDeleteCaso" ${user.cpf==caso.cpfPsi ? '' : 'disabled'}>x</button>
 						</div>
 						<!-- Modal -->
-						<div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal fade" id="confirmDeleteCaso" tabindex="-1" aria-labelledby="excluiCasoModal" aria-hidden="true">
 							<div class="modal-dialog moodal-sm">
 								<div class="modal-content">
-									<div class="modal-header"><h5 class="modal-title" id="exampleModalLabel">Atenção!</h5></div>
-									<div class="modal-body">Confirmar exclusão?</div>
+									<div class="modal-header"><h5 class="modal-title" id="excluiCasoModal">Atenção!</h5></div>
+									<div class="modal-body">Confirmar exclusão do caso?</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 										<form class="form-inline m-1" action="caso" method="post" accept-charset="ISO-8859-1">
@@ -132,14 +132,14 @@
 						<td>
 							<div class="d-flex justify-content-start">
 						<!-- Button trigger modal -->
-								<button type="button" class="btn btn-danger btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#confirmDelete" ${user.cpf==i.psi ? '' : 'disabled'}>x</button>
+								<button type="button" class="btn btn-danger btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#confirmDeleteIntervencao" ${user.cpf==i.psi ? '' : 'disabled'}>x</button>
 							</div>
 						<!-- Modal -->
-							<div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal fade" id="confirmDeleteIntervencao" tabindex="-1" aria-labelledby="excluiIntervencaoModal" aria-hidden="true">
 								<div class="modal-dialog moodal-sm">
 									<div class="modal-content">
-										<div class="modal-header"><h5 class="modal-title" id="exampleModalLabel">Atenção!</h5></div>
-										<div class="modal-body">Confirmar exclusão?</div>
+										<div class="modal-header"><h5 class="modal-title" id="excluiIntervencaoModal">Atenção!</h5></div>
+										<div class="modal-body">Confirmar exclusão da intervenção?</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 											<form class="form-inline m-1" action="intervencao" method="post" accept-charset="ISO-8859-1">

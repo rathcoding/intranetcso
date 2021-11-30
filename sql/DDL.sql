@@ -10,8 +10,6 @@ create table t_cso_psi (
     lotacao 		varchar(6),
     acesso			int default 0
 );
--- Acesso 0: nenhum, 1: admin, 2: gerente, 3: normal
-
 
 -- SIMULA ACESSO AO SIGRH (mesmos dados da INTRANET)
 create table t_cso_servidor (
@@ -70,15 +68,3 @@ create table t_cso_tipo_intervencao (
 create table t_cso_cid (
 	cid				varchar(255) primary key
 );
-
-/* NÃO SERÁ IMPLEMENTADO MULTIPLOS CIDs POR CASO NO PROTÓTIPO DO SISTEMA.
-
-create table t_cso_caso_cid (
-	id 				int auto_increment primary key,
-	caso			int,
-    cid				varchar(7)
-);
-
-alter table t_cso_caso_cid add constraint fk_caso_cid foreign key (caso) references t_cso_caso(id);
-alter table t_cso_caso_cid add constraint fk_cid foreign key (cid) references t_cso_cid(cid);
-*/
